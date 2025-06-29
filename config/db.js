@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 
-// Initialize Sequelize with environment variables
+
 const sequelize = new Sequelize(
   process.env.DB_NAME,
   process.env.DB_USER,
@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
   }
 );
 
-// Define User model here or import it from a separate file
+
 const User = sequelize.define('User', {
   name: {
     type: DataTypes.STRING,
@@ -44,7 +44,7 @@ const User = sequelize.define('User', {
   tableName: 'users'
 });
 
-// Test the database connection
+
 sequelize.authenticate()
   .then(() => {
     console.log('Connected successfully');

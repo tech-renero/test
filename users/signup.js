@@ -45,13 +45,13 @@ router.post('/register', upload.single('image'), async (req, res) => {
       password: hashedPassword,
       gender,
       role,
-      image // Save image filename
+      image 
     });
 
     // Generate JWT
     const token = jwt.sign(
       { id: user.id, role: user.role },
-      process.env.JWT_SECRET || 'your_jwt_secret',
+      process.env.JWT_SECRET ,
       { expiresIn: '1d' }
     );
 

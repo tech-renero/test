@@ -7,7 +7,7 @@ const Task = sequelize.define('Task', {
     allowNull: false
   },
   description: DataTypes.TEXT,
-  type: { // Multi-select, store as comma-separated string
+  type: { 
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -15,7 +15,7 @@ const Task = sequelize.define('Task', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  createdByRole: { // Store role of the user who created
+  createdByRole: {
     type: DataTypes.STRING,
     allowNull: false
   },

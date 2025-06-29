@@ -5,7 +5,7 @@ const loginRoutes = require('./users/login');
 const { authenticate, authorize } = require('./middleware/middleware');
 const cors = require('cors');
 const path = require('path');
-const { Task } = require('./models'); // Use models/index.js for associations
+const { Task } = require('./models');
 
 const app = express();
 
@@ -38,7 +38,7 @@ app.post('/api/tasks', authenticate, authorize('add', 'Task'), async (req, res) 
     const task = await Task.create({
       title,
       description,
-      type: typeArray.join(','), // Store as comma-separated string
+      type: typeArray.join(','), 
       createdById,
       createdByRole,
       startDate,
@@ -78,13 +78,6 @@ app.delete('/api/tasks/:id', authenticate, authorize('delete', 'Task'), async (r
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Error handling middleware (uncomment for debugging)
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).json({ message: 'Server error', error: err.message });
-// });
-
-// Start server and sync database
 const PORT = process.env.PORT || 3000;
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
